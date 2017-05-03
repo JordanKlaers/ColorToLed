@@ -1,0 +1,43 @@
+#page {
+
+  background-color: black;
+
+  min-height: 100vh;
+}
+
+#linkbar {
+
+  min-height: 12vh;
+  margin-top: 6vh;
+  /*margin-bottom: 0;*/
+  display: flex;
+  align-items: center;
+  background-color: white;
+  margin-right: 5vw;
+  margin-left: 5vw;
+  border-radius: 5px;
+
+}
+
+#linkfield{
+
+
+  display: flex;
+  flex-grow: 3;
+  margin-left: 2vw;
+
+  /*justify-content: space-between;*/
+}
+#submit{
+  /*min-height: 12vh;*/
+
+  display: flex;
+  flex-grow: 1;
+  justify-content: space-around;
+  margin-left: 2vw;
+}
+
+#btn{
+  /*margin-right: 60%;
+  margin-left: 40%*/
+}
