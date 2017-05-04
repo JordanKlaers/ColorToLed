@@ -1,4 +1,7 @@
-$(document).ready(function() {
+
+ // var globe = 'documents are connect'
+
+ $(document).ready(function() {
 
 
   function button(){
@@ -49,7 +52,5 @@ $(document).ready(function() {
 
       }
     }
-
-
 
 });
