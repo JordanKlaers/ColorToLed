@@ -1,6 +1,6 @@
 //this file to send messages to the server for the arduino to read.
 // console.log('checking connection---', globe);
-(function(){
+(function(window){
 
   var pubnub = PUBNUB.init({
     publish_key: 'pub-c-0b43969b-341d-41f5-a85e-0bd9d30404b8',
@@ -21,30 +21,31 @@
 
   // UI Reset: Subscribe data from all subscibers of the channel to set the state correctly
 
-  pubnub.subscribe({
-    channel: channel,
-    message: resetSliders, // reset the slider UI every time a subscriber makes a change
-    connect: initSliders // initialize the slider states for the fisrt time launching the app
-  });
+  // pubnub.subscribe({
+  //   channel: channel,
+  //   message: resetSliders, // reset the slider UI every time a subscriber makes a change
+  //   connect: initSliders // initialize the slider states for the fisrt time launching the app
+  // });
 
-  function resetSliders(m) {                   //probably dont need
-    red.value = brightness.r = m.r;
-    green.value = brightness.g = m.g;
-    blue.value = brightness.b = m.b;
-  }
-
-  function initSliders() {        //  not sure what its doing??
-    pubnub.history({
-      channel: channel,
-      count: 1,
-      callback: function(messages) {
-        messages[0].forEach(function(m) {
-          console.log(m);
-          resetSliders(m);
-        });
-      }
-    });
-  }
+  // function resetSliders(m) {                   //probably dont need
+  //   red.value = brightness.r = 255;
+  //   green.value = brightness.g = 255; //m.g;
+  //   blue.value = brightness.b = 255;  //m.b;
+  //   log
+  // }
+  //
+  // function initSliders() {        //  not sure what its doing??
+  //   pubnub.history({
+  //     channel: channel,
+  //     count: 1,
+  //     callback: function(messages) {
+  //       messages[0].forEach(function(m) {
+  //         console.log(m);
+  //         resetSliders(m);
+  //       });
+  //     }
+  //   });
+  // }
 
   function publishUpdate(data) {
     console.log(data);
@@ -54,5 +55,13 @@
       message: data
     });
   }
+  function led(color){
+    brightness.r = color.r
+    brightness.g = color.g
+    brightness.b = color.b
+    publishUpdate(brightness);
+  }
 
-})();
+  window.led = led;
+
+})(window);

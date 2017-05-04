@@ -1,8 +1,20 @@
 
  // var globe = 'documents are connect'
 
- $(document).ready(function() {
 
+
+ $(document).ready(function() {
+  var orgData = {}
+  var brightness =[]          //used to invert the rgb color for because anode LED
+
+  function fill(){
+    for(let i=0; i<256; i++){
+      brightness.push(i)
+    }
+    brightness.reverse()
+  }
+  fill();
+  //console.log(brightness);
 
   function button(){
     return $('#btn');
@@ -11,7 +23,7 @@
     return $('#url')
   }
 
-  var orgData = {}
+
 
 
 
@@ -25,21 +37,26 @@
       console.log(data);
       // colorConverter(data['tags'][0]['color']);          //maybe call a constructor fuction to make the objects with the color values, and methods to convert the modified led value?
       orgData = new Organizedata(data);
-      console.log(orgData);
+
+      console.log(orgData['original'][0][0])
+      console.log(orgData['led'][0]);
+
+      //console.log(orgData);
+      led(orgData.led[0]);
       });
   });
 
   function Organizedata(fakedata){
       this.original = [];
-      this.led = []
+      this.led = [];
       for(let i=0; i<fakedata["tags"].length; i++){
-        let hex = []
-        hex.push(fakedata["tags"][i]["color"])
-        hex.push(fakedata['tags'][i]['label'])
-        this.original.push(hex)
+        let hex = [];
+        hex.push(fakedata["tags"][i]["color"]);
+        hex.push(fakedata["tags"][i]["label"]);
+        this.original.push(hex);
       }
-      for(let j=0; j<this.original.length; j++){
-        this.led.push(colorConverter(this.original[j]))
+      for(var j=0; j<this.original.length; j++){
+        this.led.push(colorConverter(this.original[j][0]))
       }
       function colorConverter(color){               //input should be a hex string? I think
         var input = new tinycolor(color);               // saves the color into the library
@@ -48,6 +65,10 @@
         var hslValue = new tinycolor(toHsl);            // saves the modified  hsl value so it can be used again
         var rgbObj = hslValue.toRgb();                // changes to rgb object
         delete rgbObj['a']
+        rgbObj.r = brightness[rgbObj.r];
+        rgbObj.g = brightness[rgbObj.g];
+        rgbObj.b = brightness[rgbObj.b];
+        //console.log(rgbObj ,' ' ,j );
         return rgbObj;                          //modified led values for one color
 
       }

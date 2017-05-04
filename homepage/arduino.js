@@ -8,9 +8,9 @@ five.Board().on('ready', function() {
   // Initialize the RGB LED
   var led = new five.Led.RGB({
     pins: {
-      red: 6,
-      green: 5,
-      blue: 3
+      green: 6,
+      blue: 5,
+      red: 3
     }
   });
 
@@ -43,6 +43,7 @@ five.Board().on('ready', function() {
       channel: channel,
       count: 1,
       callback: function(messages) {
+        console.log('resetting??', messages); // TODO ------------------
         messages[0].forEach(function(m) {
           setLedColor(m);
         });
