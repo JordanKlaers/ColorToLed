@@ -30,18 +30,10 @@
   button().click(function(event){
     event.preventDefault();
     var url = urlvalue().val();
-    console.log(url);
-
+    displayImage(url);
     $.get('https://g-colortag.herokuapp.com/tag-url.json?palette=simple&sort=relevance&url=' + url, function(data) {
-      console.log('done');
-      console.log(data);
-      // colorConverter(data['tags'][0]['color']);          //maybe call a constructor fuction to make the objects with the color values, and methods to convert the modified led value?
       orgData = new Organizedata(data);
-
-      console.log(orgData['original'][0][0])
-      console.log(orgData['led'][0]);
-
-      //console.log(orgData);
+      console.log(orgData);
       led(orgData.led[0]);
       });
   });
@@ -74,21 +66,22 @@
       }
     }
 
+    function displayImage(url){
+      var pic = $('#picture');
+      var img = $('<img>');
+      img.attr("src", url);
+      img.attr('class', 'img-responsive');
+      pic.append(img);
+    }
 
-    var picContainerWidth = $('#picturecontainer').width();
-    console.log(picContainerWidth);
+    var picContainerWidth = $('#picturecontainer').width();               // right when the document load it makes sure the image container is a square
     $('#picturecontainer').css({'height':picContainerWidth+'px'});
-    var picContainerHeight = $('#picturecontainer').height();
-    console.log(picContainerHeight);
 
-    var imageUrl = 'http://coolwildlife.com/wp-content/uploads/galleries/post-3004/Fox%20Picture%20003.jpg'
-    var pic = $('#picture');
 
-    var img = $('<img>');
-    img.attr("src", imageUrl)
-    img.attr('class', 'img-responsive')
-    pic.append(img)
-    //pic.css('background-image', 'url(' + imageUrl + ')');
-
+    $( window ).resize(function() {                                     // every time the window resizes, it makes sure the image container stays as a square
+      var picContainerWidth = $('#picturecontainer').width();
+      console.log(picContainerWidth);
+      $('#picturecontainer').css({'height':picContainerWidth+'px'});
+    });
 
 });
