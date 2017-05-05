@@ -74,4 +74,21 @@
       }
     }
 
+
+    var picContainerWidth = $('#picturecontainer').width();
+    console.log(picContainerWidth);
+    $('#picturecontainer').css({'height':picContainerWidth+'px'});
+    var picContainerHeight = $('#picturecontainer').height();
+    console.log(picContainerHeight);
+
+    var imageUrl = 'http://coolwildlife.com/wp-content/uploads/galleries/post-3004/Fox%20Picture%20003.jpg'
+    var pic = $('#picture');
+
+    var img = $('<img>');
+    img.attr("src", imageUrl)
+    img.attr('class', 'img-responsive')
+    pic.append(img)
+    //pic.css('background-image', 'url(' + imageUrl + ')');
+
+
 });
