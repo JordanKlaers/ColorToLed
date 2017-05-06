@@ -7,6 +7,7 @@
   var orgData = {}
   var brightness =[]          //used to invert the rgb color for because anode LED
 
+
   function fill(){
     for(let i=0; i<256; i++){
       brightness.push(i)
@@ -30,11 +31,19 @@
   button().click(function(event){
     event.preventDefault();
     var url = urlvalue().val();
-    displayImage(url);
+    var dots = $(".dots");
+    var pic = $("img");
+    dots.css({"display": "block"});
+    pic.css({"display": "none"});
     $.get('https://g-colortag.herokuapp.com/tag-url.json?palette=simple&sort=relevance&url=' + url, function(data) {
+      dots.css({"display": "none"});
+      pic.css({"display": ""});
+
+      displayImage(url);
       orgData = new Organizedata(data);
       console.log(orgData);
       led(orgData.led[0]);
+      displayColors(orgData);//
       });
   });
 
@@ -57,18 +66,25 @@
         var hslValue = new tinycolor(toHsl);            // saves the modified  hsl value so it can be used again
         var rgbObj = hslValue.toRgb();                // changes to rgb object
         delete rgbObj['a']
-        rgbObj.r = brightness[rgbObj.r];
-        rgbObj.g = brightness[rgbObj.g];
-        rgbObj.b = brightness[rgbObj.b];
+        //rgbObj.r = brightness[rgbObj.r];
+        //rgbObj.g = brightness[rgbObj.g];
+        //rgbObj.b = brightness[rgbObj.b];
         //console.log(rgbObj ,' ' ,j );
         return rgbObj;                          //modified led values for one color
 
       }
     }
 
+    function displayColors(orgData){
+      var Rcolor1 = $("#rgb1");
+      var Hcolor1 = $("#hex1");
+      Hcolor1.css({'background-color': orgData.original[0][0]})
+      Rcolor1.css({'background-color': `rgb(${orgData.led[0].r},${orgData.led[0].g},${orgData.led[0].b})`});  //'rgb' + " (" + orgData.led[0].r + "," + orgData.led[0].g + "," + orgData.led[0].b + ")" });
+    }
+
     function displayImage(url){
       var pic = $('#picture');
-      var img = $('<img>');
+      var img = $('#img');
       img.attr("src", url);
       img.attr('class', 'img-responsive');
       pic.append(img);
@@ -83,5 +99,21 @@
       console.log(picContainerWidth);
       $('#picturecontainer').css({'height':picContainerWidth+'px'});
     });
+
+
+
+
+
+
+
+
+
+    //testing paintbrush animation
+
+    $('#colorfields').on('click', function(){
+       $(".vernice").attr("class", "vernice verniceOver");
+       $(".brush").attr("class", "brush brushOver");
+       $(".gocce").attr("class", "gocce gocceOver");
+   });
 
 });
