@@ -98,7 +98,8 @@ body{
   border-radius: 5px;
 
 }
-#hextitle{
+#hextitle, #rgbtitle{
+  text-align: center;
   margin: 1vw;
   height: 10vh;
   /*background-color: transparent;*/

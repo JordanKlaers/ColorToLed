@@ -97,23 +97,38 @@
       var rgbcolordisplay = $(".rgbcolordisplay");
       var hexcolordisplay = $(".hexcolordisplay")
       for (var i=0; i<orgData.ledwebpage.length; i++){
-        let divRow = $("<div>");                          //creates the div row
-        divRow.attr("class", "row");
-        rgbcolordisplay.append(divRow);                      // adds the class row
-        let divCol = $("<div>");
-        divCol.attr("class", "col-12 singlecolor");  //remove singlecolordisplay to remove the class that keeps it hidden
-        divCol.attr("id", "rgb"+i);
-        var red = orgData.ledwebpage[i].r
-        red = red.toString();
-        var green = orgData.ledwebpage[i].g;
-        green = green.toString();
-        var blue = orgData.ledwebpage[i].b;
-        blue = blue.toString();
-        var rgb = ("rgb("+red+","+green+","+blue+")");
+        if(i==0){
+          let divRow = $("<div>");                          //creates the div row
+          divRow.attr("class", "row");
+          rgbcolordisplay.append(divRow);                      // adds the class row
+          let divCol = $("<div>");
+          divCol.attr("class", "col-12");  //remove singlecolordisplay to remove the class that keeps it hidden
+          divCol.attr("id", "rgbtitle");
+          divCol.css({"background-color": 'transparent'});
 
-        divCol.css({"background-color": rgb});
-        divCol.css({"box-shadow": "inset 0 0 10px #000000"});
-        divRow.append(divCol);
+          divCol.html("RGB for LED's");
+          //divCol.css({"box-shadow": "inset 0 0 10px #000000"});
+          divRow.append(divCol);
+        }
+          else if(i!=0){
+          let divRow = $("<div>");                          //creates the div row
+          divRow.attr("class", "row");
+          rgbcolordisplay.append(divRow);                      // adds the class row
+          let divCol = $("<div>");
+          divCol.attr("class", "col-12 singlecolor");  //remove singlecolordisplay to remove the class that keeps it hidden
+          divCol.attr("id", "rgb"+i);
+          var red = orgData.ledwebpage[i].r
+          red = red.toString();
+          var green = orgData.ledwebpage[i].g;
+          green = green.toString();
+          var blue = orgData.ledwebpage[i].b;
+          blue = blue.toString();
+          var rgb = ("rgb("+red+","+green+","+blue+")");
+
+          divCol.css({"background-color": rgb});
+          divCol.css({"box-shadow": "inset 0 0 10px #000000"});
+          divRow.append(divCol);
+        }
       }
 
       for (var i=0; i<orgData.original.length; i++){
@@ -126,7 +141,7 @@
           divCol.attr("id", "hextitle");
           divCol.css({"background-color": 'transparent'});
 
-          divCol.html("hex colors");
+          divCol.html("Hex color values");
           //divCol.css({"box-shadow": "inset 0 0 10px #000000"});
           divRow.append(divCol);
         }
