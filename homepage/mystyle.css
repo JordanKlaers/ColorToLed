@@ -44,8 +44,9 @@ body{
 
 #picturecontainer {
   display: flex;
-  background-color: black;
+  /*background-color: black;*/
   margin-top: 6vh;
+  margin-bottom: 6vh;
   min-width: 230px;
   margin-left: 15vw;
   margin-right: 15vw;
@@ -58,6 +59,7 @@ body{
   display: flex;
   position: relative;
   background-color: white;
+  border: 10px solid black;
   flex-grow: 1;
   margin: 2vw;
 
@@ -96,12 +98,40 @@ body{
   border-radius: 5px;
 
 }
+#hextitle{
+  margin: 1vw;
+  height: 10vh;
+  /*background-color: transparent;*/
+  border: 2px solid black;
+  border-radius: 5px;
+}
 
 /*.singlecolordisplay {
   display: none;
 }*/
 
+.movingzone {
+    /*position: absolute;*/
+    top:50vh; left:50vw;
+    /*width:300px; height:120px;
+    margin: -60px 0 0 -150px;*/
+    perspective: 800px;
+}
 
+.popup{
+    width:300px;
+  transform-style: preserve-3d;
+}
+.popup:before {
+    content: '';
+    position: absolute;
+    left:5%; top:5%;
+    width:90%; height:90%;
+    border-radius: inherit;
+    background: rgba(0,0,0,.1);
+    box-shadow: 0 0 40px 20px rgba(0,0,0,.1);
+    transform: translateZ(-100px);
+}
 
 
 img{
