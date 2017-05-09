@@ -102,6 +102,7 @@ body{
   text-align: center;
   margin: 1vw;
   height: 10vh;
+  background-color: white;
   /*background-color: transparent;*/
   border: 2px solid black;
   border-radius: 5px;

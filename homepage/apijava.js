@@ -104,7 +104,7 @@
           let divCol = $("<div>");
           divCol.attr("class", "col-12");  //remove singlecolordisplay to remove the class that keeps it hidden
           divCol.attr("id", "rgbtitle");
-          divCol.css({"background-color": 'transparent'});
+        //  divCol.css({"background-color": 'transparent'});
 
           divCol.html("RGB for LED's");
           //divCol.css({"box-shadow": "inset 0 0 10px #000000"});
@@ -139,7 +139,7 @@
           let divCol = $("<div>");
           divCol.attr("class", "col-12");  //remove singlecolordisplay to remove the class that keeps it hidden
           divCol.attr("id", "hextitle");
-          divCol.css({"background-color": 'transparent'});
+          //divCol.css({"background-color": 'transparent'});
 
           divCol.html("Hex color values");
           //divCol.css({"box-shadow": "inset 0 0 10px #000000"});
@@ -225,7 +225,7 @@
 
 
     $("#colorfields").on("mouseover", function(event){
-      console.log(event.target.id);
+      console.log(event.target.id); //rgbtitle and hextitle for the svg popup
 
       //console.log(one[0].style.backgroundColor);
       if(event.target.id == 'rgb0'){
