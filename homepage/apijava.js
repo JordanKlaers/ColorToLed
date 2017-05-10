@@ -35,11 +35,14 @@
 
   button().click(function(event){
     event.preventDefault();
+    var urlsvg = $("#urlsvg");
     var url = urlvalue().val();
     var dots = $(".dots");
     var pic = $("img");
+
     dots.css({"display": "block"});
     pic.css({"display": "none"});
+    urlsvg.addClass("pleasehide");
     $.get('https://g-colortag.herokuapp.com/tag-url.json?palette=simple&sort=relevance&url=' + url, function(data) {
 
       showinfo = true;
@@ -280,11 +283,10 @@
     $("#colorfields").on("mouseout", function(event){
       console.log(event.target.id);
 
-      //console.log(one[0].style.backgroundColor);
+
       if(event.target.id == 'rgb0'){
         let zero = $("#rgb0");
         zero.css({"box-shadow": "inset 0 0 10px #000000"});
-      //  $("#rgb0").css({"box-shadow": `5px 5px 5px 0px ${$("#rgb0")[0].style.backgroundColor}`});
       }
       else if(event.target.id == 'rgb1'){
         let one = $("#rgb1");

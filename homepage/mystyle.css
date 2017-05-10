@@ -1,3 +1,5 @@
+
+
 body{
   background-color: black;
 }
@@ -14,6 +16,7 @@ body{
   min-height: 12vh;
   margin-top: 6vh;
   /*margin-bottom: 0;*/
+  position: relative;
   display: flex;
   align-items: center;
   background-color: black;
@@ -364,6 +367,17 @@ svg{
   width:150px;
   height:250px;
 
+}
+.urlbubble{
+  z-index: 90;
+  position:absolute;
+  margin: 0 auto;
+  left:150px;
+  top:25px;
+  -webkit-animation: bounce 2.5s infinite;
+  -moz-animation: bounce 2.5s infinite;
+  -webkit-animation-delay: 2s;
+  -moz-animation-delay: 2s;
 }
 .rgbbubble{
   position:absolute;
