@@ -7,6 +7,7 @@
   var orgData = {}
   var brightness =[]          //used to invert the rgb color for because anode LED
   var pictureloaded = false;
+  var showinfo = false;       //variable for when to  have the mouse over actually show the info of the colors
 
 
   function fill(){
@@ -40,6 +41,8 @@
     dots.css({"display": "block"});
     pic.css({"display": "none"});
     $.get('https://g-colortag.herokuapp.com/tag-url.json?palette=simple&sort=relevance&url=' + url, function(data) {
+
+      showinfo = true;
       dots.css({"display": "none"});
       pic.css({"display": ""});
       pictureloaded = true;
@@ -104,10 +107,8 @@
           let divCol = $("<div>");
           divCol.attr("class", "col-12");  //remove singlecolordisplay to remove the class that keeps it hidden
           divCol.attr("id", "rgbtitle");
-        //  divCol.css({"background-color": 'transparent'});
-
+          divCol.css({"padding-top": "10px"});
           divCol.html("RGB for LED's");
-          //divCol.css({"box-shadow": "inset 0 0 10px #000000"});
           divRow.append(divCol);
         }
           else if(i!=0){
@@ -140,6 +141,7 @@
           divCol.attr("class", "col-12");  //remove singlecolordisplay to remove the class that keeps it hidden
           divCol.attr("id", "hextitle");
           //divCol.css({"background-color": 'transparent'});
+          divCol.css({"padding-top": "10px"});
 
           divCol.html("Hex color values");
           //divCol.css({"box-shadow": "inset 0 0 10px #000000"});
@@ -327,7 +329,36 @@
     })
 
 
+    $(".rgbcolordisplay").on("mouseover", function(event){            //mouse over the rgb colors will show information
+      let rgbsvg = $("#rgbsvg");
+      if(showinfo){
+        console.log('trying to remove??');
+        rgbsvg.removeClass("pleasehide")
+      }
+    });
+    $(".rgbcolordisplay").on("mouseout", function(event){            //mouse out will hide the rgb info
+      let rgbsvg = $("#rgbsvg");
+      if(showinfo){
+        rgbsvg.addClass("pleasehide")
+      }
+    });
 
+
+
+
+
+    $(".hexcolordisplay").on("mouseover", function(event){          //mouse over the hex colors will show information
+      let hexsvg = $("#hexsvg");
+      if(showinfo){
+        hexsvg.removeClass("pleasehide")
+      }
+    });
+    $(".hexcolordisplay").on("mouseout", function(event){         // mouse out hide the hex info
+      let hexsvg = $("#hexsvg");
+      if(showinfo){
+        hexsvg.addClass("pleasehide")
+      }
+    });
 
 
     $("#picture").on("mouseover",function(){
@@ -361,6 +392,10 @@ var rotateForce = 20; // max popup rotation in degrees
           .css('transform', 'rotateX('+rotateX+'deg) rotateY('+rotateY+'deg)');
       }
   });
+
+
+
+
 // }
 
 

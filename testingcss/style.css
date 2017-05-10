@@ -36,6 +36,8 @@ svg{
   stroke-width: 3px;
   stroke-dasharray: 700;
   stroke-dashoffset: 800;
+  /*stroke-dasharray: 10;
+  stroke-dashoffset: 500;*/
   animation: line-ani 2s linear forwards;
   -webkit-animation: line-ani 5s linear forwards;
   -moz-animation: line-ani 5s linear forwards;
