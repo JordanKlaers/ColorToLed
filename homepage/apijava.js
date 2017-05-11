@@ -53,7 +53,7 @@
       displayImage(url);
       orgData = new Organizedata(data);
       console.log(orgData);
-      led(orgData.led[0]);
+      led(orgData.led[1]);
       displayColors(orgData);//
       });
   });
@@ -102,7 +102,7 @@
     function displayColors(orgData){
       var rgbcolordisplay = $(".rgbcolordisplay");
       var hexcolordisplay = $(".hexcolordisplay")
-      for (var i=0; i<orgData.ledwebpage.length; i++){
+      for (var i=0; (i<orgData.ledwebpage.length && i<10); i++){
         if(i==0){
           let divRow = $("<div>");                          //creates the div row
           divRow.attr("class", "row");
@@ -111,6 +111,7 @@
           divCol.attr("class", "col-12");  //remove singlecolordisplay to remove the class that keeps it hidden
           divCol.attr("id", "rgbtitle");
           divCol.css({"padding-top": "10px"});
+          divCol.css({"box-shadow": "inset 0 0 10px #000000"});
           divCol.html("RGB for LED's");
           divRow.append(divCol);
         }
@@ -121,11 +122,11 @@
           let divCol = $("<div>");
           divCol.attr("class", "col-12 singlecolor");  //remove singlecolordisplay to remove the class that keeps it hidden
           divCol.attr("id", "rgb"+i);
-          var red = orgData.ledwebpage[i].r
+          var red = orgData.ledwebpage[i-1].r
           red = red.toString();
-          var green = orgData.ledwebpage[i].g;
+          var green = orgData.ledwebpage[i-1].g;
           green = green.toString();
-          var blue = orgData.ledwebpage[i].b;
+          var blue = orgData.ledwebpage[i-1].b;
           blue = blue.toString();
           var rgb = ("rgb("+red+","+green+","+blue+")");
 
@@ -135,7 +136,7 @@
         }
       }
 
-      for (var i=0; i<orgData.original.length; i++){
+      for (var i=0; (i<orgData.original.length && i<10); i++){
         if(i==0){
           let divRow = $("<div>");                          //creates the div row
           divRow.attr("class", "row");
@@ -145,7 +146,7 @@
           divCol.attr("id", "hextitle");
           //divCol.css({"background-color": 'transparent'});
           divCol.css({"padding-top": "10px"});
-
+          divCol.css({"box-shadow": "inset 0 0 10px #000000"});
           divCol.html("Hex color values");
           //divCol.css({"box-shadow": "inset 0 0 10px #000000"});
           divRow.append(divCol);
@@ -155,9 +156,18 @@
         divRow.attr("class", "row");
         hexcolordisplay.append(divRow);                      // adds the class row
         let divCol = $("<div>");
-        divCol.attr("class", "col-12 singlecolor");  //remove singlecolordisplay to remove the class that keeps it hidden
+        divCol.attr("class", "col-12 singlecolor hex");  //remove singlecolordisplay to remove the class that keeps it hidden
         divCol.attr("id", "hex"+i);
-        var hex = orgData.original[i][0];
+        var hex = orgData.original[i-1][0];
+        var red = orgData.ledwebpage[i-1].r
+        red = red.toString();
+        var green = orgData.ledwebpage[i-1].g;
+        green = green.toString();
+        var blue = orgData.ledwebpage[i-1].b;
+        blue = blue.toString();
+        var rgb = ("rgb("+red+","+green+","+blue+")");
+        divCol.data("start",hex);
+        divCol.data("end",rgb);
         divCol.css({"background-color": hex});
         divCol.css({"box-shadow": "inset 0 0 10px #000000"});
         divRow.append(divCol);
@@ -167,6 +177,7 @@
       // var Hcolor1 = $("#hex1");
       // Hcolor1.css({'background-color': orgData.original[0][0]})
       // Rcolor1.css({'background-color': `rgb(${orgData.led[0].r},${orgData.led[0].g},${orgData.led[0].b})`});  //'rgb' + " (" + orgData.led[0].r + "," + orgData.led[0].g + "," + orgData.led[0].b + ")" });
+      addColorListeners();
     }
 
     function displayImage(url){
@@ -191,48 +202,78 @@
 
 
     $("#colorfields").on("mousedown", function(event){
+
       console.log(event.target.id);
-      console.log($("#rgb0"));
+
       if(event.target.id == 'rgb0'){
-        led(orgData.led[0]);
+        // led(orgData.led[0]);
       }
       else if(event.target.id == 'rgb1'){
-        led(orgData.led[1]);
+        led(orgData.led[0]);
       }
       else if(event.target.id == 'rgb2'){
-        led(orgData.led[2]);
+        led(orgData.led[1]);
       }
       else if(event.target.id == 'rgb3'){
-        led(orgData.led[3]);
+        led(orgData.led[2]);
       }
       else if(event.target.id == 'rgb4'){
-        led(orgData.led[4]);
+        led(orgData.led[3]);
       }
       else if(event.target.id == 'rgb5'){
-        led(orgData.led[5]);
+        led(orgData.led[4]);
       }
       else if(event.target.id == 'rgb6'){
-        led(orgData.led[6]);
+        led(orgData.led[5]);
       }
       else if(event.target.id == 'rgb7'){
-        led(orgData.led[7]);
+        led(orgData.led[6]);
       }
       else if(event.target.id == 'rgb8'){
-        led(orgData.led[8]);
+        led(orgData.led[7]);
       }
       else if(event.target.id == 'rgb9'){
-        led(orgData.led[9]);
+        led(orgData.led[8]);
       }
       else if(event.target.id == 'rgb10'){
-        led(orgData.led[10]);
+        led(orgData.led[9]);
       }
+
+      // else if(event.target.id == "hex1"){
+      //   fadehexcolor(orgData.original[0][0]);
+      // }
+      // else if(event.target.id == "hex2"){
+      //   fadehexcolor(orgData.original[1][0]);
+      // }
+      // else if(event.target.id == "hex3"){
+      //   fadehexcolor(orgData.original[2][0]);
+      // }
+      // else if(event.target.id == "hex4"){
+      //   fadehexcolor(orgData.original[3][0]);
+      // }
+      // else if(event.target.id == "hex5"){
+      //   fadehexcolor(orgData.original[4][0]);
+      // }
+      // else if(event.target.id == "hex6"){
+      //   fadehexcolor(orgData.original[5][0]);
+      // }
+      // else if(event.target.id == "hex7"){
+      //   fadehexcolor(orgData.original[6][0]);
+      // }
+      // else if(event.target.id == "hex8"){
+      //   fadehexcolor(orgData.original[7][0]);
+      // }
+      // else if(event.target.id == "hex9"){
+      //   fadehexcolor(orgData.original[8][0]);
+      // }
+      // else if(event.target.id == "hex10"){
+      //   fadehexcolor(orgData.original[9][0]);
+      // }
     })
 
 
     $("#colorfields").on("mouseover", function(event){
-      console.log(event.target.id); //rgbtitle and hextitle for the svg popup
-
-      //console.log(one[0].style.backgroundColor);
+      // console.log(event.target);
       if(event.target.id == 'rgb0'){
         let zero = $("#rgb0");
         zero.css({"box-shadow": `0px 0px 2px 2px ${zero[0].style.backgroundColor}, inset 0 0 10px #000000`});
@@ -281,7 +322,7 @@
     })
 
     $("#colorfields").on("mouseout", function(event){
-      console.log(event.target.id);
+      // console.log(event.target.id);
 
 
       if(event.target.id == 'rgb0'){
@@ -367,8 +408,8 @@
       console.log('donk');
       $("#picture").css({"box-shadow": '0px 0px 4px 2px white'});
     })
-    $("#img").on("mouseout",function(){
-      $("#img").css({"box-shadow": ""});
+    $("#picture").on("mouseout",function(){
+      $("#picture").css({"box-shadow": ""});
     })
 
 
@@ -395,20 +436,19 @@ var rotateForce = 20; // max popup rotation in degrees
       }
   });
 
+function addColorListeners() {
+  $('.hex').on('mouseenter', function(e) {
+    console.log('mouseover');
+    $this = $(this);
+    console.log($this.prop('id'));
+    $this.css('background-color', $this.data("end"));
+  })
 
-
-
-// }
-
-
-
-    //testing paintbrush animation
-
-  //   $('#colorfields').on('click', function(){
-  //      $(".vernice").attr("class", "vernice verniceOver");
-  //      $(".brush").attr("class", "brush brushOver");
-  //      $(".gocce").attr("class", "gocce gocceOver");
-  //  });
-
-
+  $('.hex').on('mouseout', function(e) {
+    console.log('mouseover');
+    $this = $(this);
+    console.log($this.data());
+    $this.css('background-color', $this.data("start"));
+  })
+}
 });

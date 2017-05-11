@@ -48,7 +48,7 @@
   // }
 
   function publishUpdate(data) {
-    console.log(data);
+    //console.log(data);
 
     pubnub.publish({
       channel: channel,
@@ -56,9 +56,11 @@
     });
   }
   function led(color){
+
     brightness.r = color.r
     brightness.g = color.g
     brightness.b = color.b
+    
     console.log(brightness, "this color being loaded to the led");
     publishUpdate(brightness);
   }

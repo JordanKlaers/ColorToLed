@@ -1,0 +1,237 @@
+body {
+  background: #444;
+  margin: 0;
+}
+
+.frame {
+  margin: 10px auto;
+  overflow: hidden;
+  width: 360px;
+  height: 216px;
+}
+
+.wrapper {
+  animation: flipBlocks 4s steps(2) infinite;
+}
+
+.container {
+  margin: -20% auto;
+  position: relative;
+  width: 360px;
+  height: 360px;
+  animation: zoomIn 2s cubic-bezier(0.7, 0.6, 0.5, 0.4) infinite;
+}
+
+.cube-wrapper {
+  position: absolute;
+}
+
+.cube {
+  top: 4%;
+  position: relative;
+  transform-style: preserve-3d;
+  transform: rotateX(30deg) rotateY(45deg);
+}
+
+.side {
+  position: absolute;
+}
+
+.top {
+  background: #fff;
+  transform-origin: 0% 100%;
+  transform: rotateX(-90deg);
+}
+
+.left {
+  background: #bbb;
+}
+
+.right {
+  background: #888;
+  transform-origin: 0% 0%;
+}
+
+.cube-wrapper:nth-child(1) {
+  transform: rotate(180deg);
+  z-index: 1;
+  width: 720px;
+  height: 720px;
+  top: 0px;
+  left: 0px;
+}
+.cube-wrapper:nth-child(1) .side {
+  width: 360px;
+  height: 360px;
+}
+.cube-wrapper:nth-child(1) .left {
+  transform: translateY(360px);
+}
+.cube-wrapper:nth-child(1) .right {
+  transform: translate(360px, 360px) rotateY(-90deg);
+}
+
+.cube-wrapper:nth-child(2) {
+  z-index: 2;
+  width: 360px;
+  height: 360px;
+  top: 180px;
+  left: 180px;
+}
+.cube-wrapper:nth-child(2) .side {
+  width: 180px;
+  height: 180px;
+}
+.cube-wrapper:nth-child(2) .left {
+  transform: translateY(180px);
+}
+.cube-wrapper:nth-child(2) .right {
+  transform: translate(180px, 180px) rotateY(-90deg);
+}
+
+.cube-wrapper:nth-child(3) {
+  transform: rotate(180deg);
+  z-index: 3;
+  width: 180px;
+  height: 180px;
+  top: 270px;
+  left: 270px;
+}
+.cube-wrapper:nth-child(3) .side {
+  width: 90px;
+  height: 90px;
+}
+.cube-wrapper:nth-child(3) .left {
+  transform: translateY(90px);
+}
+.cube-wrapper:nth-child(3) .right {
+  transform: translate(90px, 90px) rotateY(-90deg);
+}
+
+.cube-wrapper:nth-child(4) {
+  z-index: 4;
+  width: 90px;
+  height: 90px;
+  top: 315px;
+  left: 315px;
+}
+.cube-wrapper:nth-child(4) .side {
+  width: 45px;
+  height: 45px;
+}
+.cube-wrapper:nth-child(4) .left {
+  transform: translateY(45px);
+}
+.cube-wrapper:nth-child(4) .right {
+  transform: translate(45px, 45px) rotateY(-90deg);
+}
+
+.cube-wrapper:nth-child(5) {
+  transform: rotate(180deg);
+  z-index: 5;
+  width: 45px;
+  height: 45px;
+  top: 337.5px;
+  left: 337.5px;
+}
+.cube-wrapper:nth-child(5) .side {
+  width: 22.5px;
+  height: 22.5px;
+}
+.cube-wrapper:nth-child(5) .left {
+  transform: translateY(22.5px);
+}
+.cube-wrapper:nth-child(5) .right {
+  transform: translate(22.5px, 22.5px) rotateY(-90deg);
+}
+
+.cube-wrapper:nth-child(6) {
+  z-index: 6;
+  width: 22.5px;
+  height: 22.5px;
+  top: 348.75px;
+  left: 348.75px;
+}
+.cube-wrapper:nth-child(6) .side {
+  width: 11.25px;
+  height: 11.25px;
+}
+.cube-wrapper:nth-child(6) .left {
+  transform: translateY(11.25px);
+}
+.cube-wrapper:nth-child(6) .right {
+  transform: translate(11.25px, 11.25px) rotateY(-90deg);
+}
+
+.cube-wrapper:nth-child(7) {
+  transform: rotate(180deg);
+  z-index: 7;
+  width: 11.25px;
+  height: 11.25px;
+  top: 354.375px;
+  left: 354.375px;
+}
+.cube-wrapper:nth-child(7) .side {
+  width: 5.625px;
+  height: 5.625px;
+}
+.cube-wrapper:nth-child(7) .left {
+  transform: translateY(5.625px);
+}
+.cube-wrapper:nth-child(7) .right {
+  transform: translate(5.625px, 5.625px) rotateY(-90deg);
+}
+
+.cube-wrapper:nth-child(8) {
+  z-index: 8;
+  width: 5.625px;
+  height: 5.625px;
+  top: 357.1875px;
+  left: 357.1875px;
+}
+.cube-wrapper:nth-child(8) .side {
+  width: 2.8125px;
+  height: 2.8125px;
+}
+.cube-wrapper:nth-child(8) .left {
+  transform: translateY(2.8125px);
+}
+.cube-wrapper:nth-child(8) .right {
+  transform: translate(2.8125px, 2.8125px) rotateY(-90deg);
+}
+
+.cube-wrapper:nth-child(9) {
+  transform: rotate(180deg);
+  z-index: 9;
+  width: 2.8125px;
+  height: 2.8125px;
+  top: 358.59375px;
+  left: 358.59375px;
+}
+.cube-wrapper:nth-child(9) .side {
+  width: 1.40625px;
+  height: 1.40625px;
+}
+.cube-wrapper:nth-child(9) .left {
+  transform: translateY(1.40625px);
+}
+.cube-wrapper:nth-child(9) .right {
+  transform: translate(1.40625px, 1.40625px) rotateY(-90deg);
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(1.5, 1.5);
+  }
+  to {
+    transform: scale(3, 3);
+  }
+}
+@keyframes flipBlocks {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
