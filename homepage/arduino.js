@@ -14,7 +14,7 @@ five.Board().on('ready', function() {
     }
   });
 
-  led.on();                                             // seems to turn the pins on or something
+  led.on();
   led.color({red: 255, blue: 255, green: 255});               // blank initial value
 
 
@@ -28,7 +28,7 @@ five.Board().on('ready', function() {
   pubnub.subscribe({
     channel: channel,
     callback: setLedColor,
-    connect: initLedColor,                                  //what is this doing?
+    connect: initLedColor,                                 
     error: function(err) {console.log(err);}
   });
 
@@ -38,12 +38,12 @@ five.Board().on('ready', function() {
     console.log( led.color() );
   }
 
-  function initLedColor() {                                         //history?? what is this doing???
+  function initLedColor() {
     pubnub.history({
       channel: channel,
       count: 1,
       callback: function(messages) {
-        console.log('resetting??', messages); // TODO ------------------
+        console.log('resetting??', messages);
         messages[0].forEach(function(m) {
           setLedColor(m);
         });

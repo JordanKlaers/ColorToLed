@@ -1,7 +1,4 @@
 
- // var globe = 'documents are connect'
-
-
 
  $(document).ready(function() {
   var orgData = {}
@@ -10,7 +7,7 @@
   var showinfo = false;       //variable for when to  have the mouse over actually show the info of the colors
 
 
-  function fill(){
+  function fill(){                  // this function creatrs an array to help convert the rgb color values for the anode led
     for(let i=0; i<256; i++){
       brightness.push(i)
     }
@@ -19,7 +16,7 @@
   fill();
   //console.log(brightness);
 
-  function button(){
+  function button(){        //variation to just creating a variable of the element
     return $('#btn');
   }
   function urlvalue(){
@@ -74,7 +71,7 @@
       for(var j=0; j<this.original.length; j++){
         this.ledwebpage.push(colorConverterForWeb(this.original[j][0]))
       }
-      function colorConverterForWeb(color){               //input should be a hex string? I think
+      function colorConverterForWeb(color){
         var input = new tinycolor(color);               // saves the color into the library
         var toHsl = (input.toHslString()).substring(0,7);             //converst the value to hsl and changes it a little
         toHsl = (toHsl+' 100%, 50%)');
@@ -91,7 +88,7 @@
         var hslValue = new tinycolor(toHsl);            // saves the modified  hsl value so it can be used again
         var rgbObj = hslValue.toRgb();                // changes to rgb object
         delete rgbObj['a']
-        rgbObj.r = brightness[rgbObj.r];        // TODO need to make a new key on the orgainze data object for web page led and arduino led values
+        rgbObj.r = brightness[rgbObj.r];
         rgbObj.g = brightness[rgbObj.g];
         rgbObj.b = brightness[rgbObj.b];
         return rgbObj;                          //modified led values for one color
@@ -144,11 +141,9 @@
           let divCol = $("<div>");
           divCol.attr("class", "col-12");  //remove singlecolordisplay to remove the class that keeps it hidden
           divCol.attr("id", "hextitle");
-          //divCol.css({"background-color": 'transparent'});
           divCol.css({"padding-top": "10px"});
           divCol.css({"box-shadow": "inset 0 0 10px #000000"});
           divCol.html("Hex color values");
-          //divCol.css({"box-shadow": "inset 0 0 10px #000000"});
           divRow.append(divCol);
         }
         if(i!=0){
@@ -173,11 +168,7 @@
         divRow.append(divCol);
       }
       }
-      // var Rcolor1 = $("#rgb1");
-      // var Hcolor1 = $("#hex1");
-      // Hcolor1.css({'background-color': orgData.original[0][0]})
-      // Rcolor1.css({'background-color': `rgb(${orgData.led[0].r},${orgData.led[0].g},${orgData.led[0].b})`});  //'rgb' + " (" + orgData.led[0].r + "," + orgData.led[0].g + "," + orgData.led[0].b + ")" });
-      addColorListeners();
+      addColorListeners();          // when the color display div's are made, event listeners are added to them
     }
 
     function displayImage(url){
@@ -202,13 +193,7 @@
 
 
     $("#colorfields").on("mousedown", function(event){
-
-      console.log(event.target.id);
-
-      if(event.target.id == 'rgb0'){
-        // led(orgData.led[0]);
-      }
-      else if(event.target.id == 'rgb1'){
+      if(event.target.id == 'rgb1'){
         led(orgData.led[0]);
       }
       else if(event.target.id == 'rgb2'){
@@ -238,46 +223,13 @@
       else if(event.target.id == 'rgb10'){
         led(orgData.led[9]);
       }
-
-      // else if(event.target.id == "hex1"){
-      //   fadehexcolor(orgData.original[0][0]);
-      // }
-      // else if(event.target.id == "hex2"){
-      //   fadehexcolor(orgData.original[1][0]);
-      // }
-      // else if(event.target.id == "hex3"){
-      //   fadehexcolor(orgData.original[2][0]);
-      // }
-      // else if(event.target.id == "hex4"){
-      //   fadehexcolor(orgData.original[3][0]);
-      // }
-      // else if(event.target.id == "hex5"){
-      //   fadehexcolor(orgData.original[4][0]);
-      // }
-      // else if(event.target.id == "hex6"){
-      //   fadehexcolor(orgData.original[5][0]);
-      // }
-      // else if(event.target.id == "hex7"){
-      //   fadehexcolor(orgData.original[6][0]);
-      // }
-      // else if(event.target.id == "hex8"){
-      //   fadehexcolor(orgData.original[7][0]);
-      // }
-      // else if(event.target.id == "hex9"){
-      //   fadehexcolor(orgData.original[8][0]);
-      // }
-      // else if(event.target.id == "hex10"){
-      //   fadehexcolor(orgData.original[9][0]);
-      // }
-    })
+    });
 
 
     $("#colorfields").on("mouseover", function(event){
-      // console.log(event.target);
       if(event.target.id == 'rgb0'){
         let zero = $("#rgb0");
         zero.css({"box-shadow": `0px 0px 2px 2px ${zero[0].style.backgroundColor}, inset 0 0 10px #000000`});
-      //  $("#rgb0").css({"box-shadow": `5px 5px 5px 0px ${$("#rgb0")[0].style.backgroundColor}`});
       }
       else if(event.target.id == 'rgb1'){
         let one = $("#rgb1");
@@ -322,9 +274,6 @@
     })
 
     $("#colorfields").on("mouseout", function(event){
-      // console.log(event.target.id);
-
-
       if(event.target.id == 'rgb0'){
         let zero = $("#rgb0");
         zero.css({"box-shadow": "inset 0 0 10px #000000"});
@@ -371,7 +320,6 @@
       }
     })
 
-
     $(".rgbcolordisplay").on("mouseover", function(event){            //mouse over the rgb colors will show information
       let rgbsvg = $("#rgbsvg");
       if(showinfo){
@@ -385,10 +333,6 @@
         rgbsvg.addClass("pleasehide")
       }
     });
-
-
-
-
 
     $(".hexcolordisplay").on("mouseover", function(event){          //mouse over the hex colors will show information
       let hexsvg = $("#hexsvg");
@@ -417,7 +361,7 @@
 
 
     var moveForce = 30; // max popup movement in pixels
-var rotateForce = 20; // max popup rotation in degrees
+    var rotateForce = 20; // max popup rotation in degrees
 
   $(document).mousemove(function(event) {
       var docX = $(window).width();

@@ -12,10 +12,8 @@ body{
 }
 
 #linkbar {
-
   min-height: 12vh;
   margin-top: 6vh;
-  /*margin-bottom: 0;*/
   position: relative;
   display: flex;
   align-items: center;
@@ -24,21 +22,14 @@ body{
   margin-right: 5vw;
   margin-left: 5vw;
   border-radius: 5px;
-
 }
 
 #linkfield{
-
-
   display: flex;
   flex-grow: 3;
   margin-left: 2vw;
-
-  /*justify-content: space-between;*/
 }
 #submit{
-  /*min-height: 12vh;*/
-
   display: flex;
   flex-grow: 1;
   justify-content: space-around;
@@ -47,15 +38,11 @@ body{
 
 #picturecontainer {
   display: flex;
-  /*background-color: black;*/
   margin-top: 6vh;
   margin-bottom: 6vh;
   min-width: 230px;
   margin-left: 15vw;
   margin-right: 15vw;
-
-  /*margin-right: 25vw;
-  margin-left: 25vw;*/
   border-radius: 5px;
 }
 #picture {
@@ -65,7 +52,6 @@ body{
   border: 10px solid black;
   flex-grow: 1;
   margin: 2vw;
-
 }
 
 #colorfields{
@@ -74,22 +60,15 @@ body{
   margin-left: 5vw;
   margin-bottom: 6vh;
   min-width: 300px;
-
 }
 
 .rgbcolordisplay{
-
-
-  /*background-color: transparent;*/
   position:relative;
   border-radius: 5px;
   min-height: 10vh;
 }
 
 .hexcolordisplay{
-
-
-  /*background-color: transparent;*/
   border-radius: 5px;
   min-height: 10vh;
 }
@@ -97,7 +76,6 @@ body{
 .singlecolor {
   margin: 1vw;
   height: 10vh;
-  /*background-color: transparent;*/
   border: 2px solid black;
   border-radius: 5px;
 
@@ -107,20 +85,12 @@ body{
   margin: 1vw;
   height: 10vh;
   background-color: white;
-  /*background-color: transparent;*/
   border: 2px solid black;
   border-radius: 5px;
 }
 
-/*.singlecolordisplay {
-  display: none;
-}*/
-
 .movingzone {
-    /*position: absolute;*/
     top:50vh; left:50vw;
-    /*width:300px; height:120px;
-    margin: -60px 0 0 -150px;*/
     perspective: 800px;
 }
 
@@ -325,17 +295,12 @@ transition: background-color 2s ease-out;
     transform: translate(5.5em, 0em);
   }
 }
-/*body {
-  background: black;
-}*/
 
 .dots {
-
   position: absolute;
   display: none;
   width: 2vw;
   margin: 47%;
-  /*margin: 10em auto;*/
 }
 
 .dot {
@@ -358,7 +323,6 @@ transition: background-color 2s ease-out;
 }
 .wrap{
   position:relative;
-  /*margin:100px auto;*/
   width:50vw;
   z-index:99;
 }
